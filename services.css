@@ -1,0 +1,247 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+*{
+    font-family: poppins;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  body{
+    background-color: #f0f0f0; /* Light Gray Background */
+    color: #333; /* Dark text color */
+    font-family: Arial, sans-serif;
+  }
+
+  header{
+    background-color: #333;
+    padding: 10px 20px;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+ul{
+    list-style: none;
+}
+
+a{
+    text-decoration: none;
+}
+
+.section-content{
+    margin: 0 auto;
+    padding: 10px 20px;
+    max-width: 100%;
+}
+
+header .navbar{
+    display: flex;
+    padding: 20px;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.navbar .nav-menu{
+    display: flex;
+    gap: 10px;
+}
+
+.navbar .nav-menu .nav-link{
+    padding: 10px 18px;
+    color: rgb(255, 255, 255);
+    background-color: rgba(0, 0, 0, 0.163);
+    font-size: 15px;
+    border-radius: 30px;
+    transition: 0.3s ease;
+}
+
+.navbar .nav-menu .nav-link:hover {
+    color: rgb(255, 255, 255);
+    background: rgba(255, 255, 255, 0.163);
+}
+
+.navbar .nav-logo .logo-text {
+    color: white;
+}
+.navbar .nav-menu .nav-link {
+    color: white;
+}
+
+.navbar .toggle-btn {
+    color: white;
+    font-size: 1.5rem;
+    cursor: pointer;
+    display: none;
+}
+
+
+
+
+.dropdown_menu{
+    margin-top: 20px;
+    display: none;
+    position: absolute;
+    right: 2rem;
+    top: 60px;
+    height: 0;
+    width: 300px;
+    background: rgba(0, 0, 0, 0.384);
+    backdrop-filter: blue(15px);
+    border-radius: 10px;
+    overflow: hidden;
+    transition: height .0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.dropdown_menu.open{
+    height: 240px;
+}
+
+.dropdown_menu li{
+    padding: 0.7rem;
+    list-style-type: none;
+    text-align: center;
+    justify-content: center;
+}
+
+.nav-item a{
+    color: white;
+    padding: 10px 20px;
+    border-radius: 20px;
+    background-color: #333333d5;
+}
+
+.nav-item a:hover{
+    color: rgb(255, 255, 255);
+    background: rgba(255, 255, 255, 0.163);
+}
+
+
+@media (max-width: 992px) {
+    .navbar .nav-menu,
+    .navbar {
+        display: none;
+    }
+
+
+.navbar .toggle-btn{
+    display: block; 
+}
+
+}
+
+.dropdown_menu{
+    display: block;
+
+}  
+
+
+
+
+
+/* Hero Section */
+.hero {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background: linear-gradient(to right, #4b60ff, #00c6ff);
+    color: #fff;
+}
+
+.hero-content h1 {
+    font-size: 3rem;
+}
+
+.highlight {
+    color: #ffd700;
+}
+
+.btn {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #fff;
+    color: #333;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background 0.3s;
+}
+
+.btn:hover {
+    background-color: #ffd700;
+}
+
+
+
+
+.product-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    margin-bottom: 60px;
+}
+
+.product-box {
+    background: #fff;
+    margin: 10px;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 300px; /* Fixed width for product boxes */
+    transition: transform 0.2s;
+    position: relative; /* Set position to relative for absolute positioning of the button */
+    overflow: hidden; /* Prevent overflow of content */
+}
+
+.product-box a {
+    color: white;
+}
+
+.product-image {
+    width: 100%; /* Make the image take the full width of the box */
+    height: 200px; /* Set a fixed height for the image */
+    object-fit: cover; /* Ensure the image covers the area without distortion */
+    border-radius: 5px; /* Optional: round the corners of the image */
+}
+
+.product-box:hover {
+    transform: scale(1.05);
+}
+
+button {
+    position: absolute; /* Position the button absolutely */
+    bottom: 10px; /* Distance from the bottom of the product box */
+    left: 25%; /* Center the button horizontally */
+    transform: translateX(-50%); /* Adjust for centering */
+    background: #007BFF; /* Button background color */
+    color: #fff; /* Button text color */
+    border: none; /* Remove default border */
+    padding: 10px 10px; /* Button padding */
+    border-radius: 5px; /* Round button corners */
+    cursor: pointer; /* Change cursor on hover */
+    transition: background 0.3s; /* Smooth background transition */
+    width: 40%; /* Button width */}
+
+.product-box p{
+        font-size: 15px; /* Font size for the paragraph */
+        margin-bottom: 29px; /* Space below the paragraph */
+        color: #333; /* Text color */
+    }
+    
+    
+ /* Footer */
+footer {
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 25px;
+    margin-top: 20px;
+}
+
+footer p {
+    margin: 0;
+}
+   
+
