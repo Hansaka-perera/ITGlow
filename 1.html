@@ -59,7 +59,39 @@
                                 <p>&#10004; 1 page</p>
                                 <p>&#10004; Source file</p>
                             </div>
-                            <button class="request-btn">Request to order</button>
+                            <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Request to Order</title>
+  <style>
+   
+    .order-btn {
+      background-color: #000000; /* WhatsApp green */
+      color: white;
+      padding: 8px 15px;
+      font-size: 18px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      text-decoration: none;
+      transition: background-color 0.3s ease;
+    }
+
+    .order-btn:hover {
+      background-color: #686868;
+    }
+  </style>
+</head>
+<body>
+  <button class="order-btn" onclick="requestOrder()">Request to Order</button>
+
+  <script>
+    function requestOrder() {
+      const phoneNumber = "0760180114"; // Replace with the seller's WhatsApp number
+      const message = "Hello! I would like to place an order. Please provide me with more details."; // Customize the message
+      const url = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+      window.open(url, "_blank");
+    }
+  </script>
                             <p class="compare">Compare packages</p>
                         </div>
                         <!-- Contact -->
