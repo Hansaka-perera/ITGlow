@@ -115,4 +115,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 
+function requestOrder() {
+    const phoneNumber = "+94760180114"; // Replace with the seller's WhatsApp number
+    const message = "Hello! I would like to place an order. Please provide me with more details."; // Customize the message
+    const url = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+    window.open(url, "_blank");
+  }
+  
 
