@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Services | ITGlow - Innovative IT Solutions</title>
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-TPNMC5ZE50"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-TPNMC5ZE50');
+    </script>
+    <style>
+        :root {
+            --primary-color: #4361ee;
+            --secondary-color: #3f37c9;
+            --accent-color: #4cc9f0;
+            --dark-color: #1a1a2e;
+            --light-color: #f8f9fa;
+            --text-color: #333;
+            --text-light: #6c757d;
+            --white: #ffffff;
+            --transition: all 0.3s ease;
+            --shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            --radius: 8px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+
+        }
+                /* Add this to your CSS */
+.btn, .service-link, button, a {
+    text-decoration: none !important;
+}
+
+/* For hover states */
+.btn:hover, .service-link:hover, button:hover, a:hover {
+    text-decoration: none !important;
+}
+
+ul {
+  list-style-type: none;
+  padding-left: 0; /* Also removes default left padding */
+}
+
+        body {
+            background-color: var(--light-color);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        /* Header & Navigation */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            transition: var(--transition);
+            background-color: var(--white);
+            box-shadow: var(--shadow);
+        }
+
+        .section-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+        }
+
+        .logo-text {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+
+        .logo-text span {
+            color: var(--accent-color);
+        }
+
+        .nav-menu {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+        }
+
+        .nav-link {
+            font-weight: 500;
+            color: var(--text-color);
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .nav-link:hover {
+            color: var(--primary-color);
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary-color);
+            transition: var(--transition);
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        .toggle-btn {
+            color: var(--text-color);
+            font-size: 1.5rem;
+            cursor: pointer;
+            display: none;
+        }
+
+        .dropdown_menu {
+            display: none;
+            position: absolute;
+            right: 2rem;
+            top: 80px;
+            width: 300px;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(15px);
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            opacity: 0;
+            transform: translateY(-20px);
+            transition: opacity 0.3s ease, transform 0.3s ease;
+        }
+
+        .dropdown_menu.open {
+            opacity: 1;
+            transform: translateY(0);
+            display: block;
+        }
+
+        .dropdown_menu .nav-item {
+            padding: 0.7rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .dropdown_menu .nav-link {
+            color: var(--text-color);
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 60vh;
+            background: linear-gradient(rgba(67, 97, 238, 0.8), rgba(67, 97, 238, 0.8)), 
+                        url('https://images.unsplash.com/photo-1573164713988-8665fc963095?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2069&q=80') no-repeat center center/cover;
+            display: flex;
+            align-items: center;
+            text-align: center;
+            color: var(--white);
+            padding-top: 80px;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background: var(--white);
+            color: var(--primary-color);
+            border: none;
+            border-radius: var(--radius);
+            cursor: pointer;
+            transition: var(--transition);
+            font-weight: 500;
+            text-align: center;
+        }
+
+        .btn:hover {
+            background: var(--accent-color);
+            color: var(--white);
+            transform: translateY(-3px);
+            box-shadow: var(--shadow);
+        }
+
+        /* Services Section */
+        .services {
+            padding: 80px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--dark-color);
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: var(--primary-color);
+            border-radius: 2px;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            font-size: 1.1rem;
+            color: var(--text-light);
+            max-width: 700px;
+            margin: 0 auto 3rem;
+        }
+
+        .services-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .service-card {
+            background: var(--white);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            padding: 30px;
+            transition: var(--transition);
+            text-align: center;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .service-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 20px;
+            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-size: 2rem;
+        }
+
+        .service-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: var(--dark-color);
+        }
+
+        .service-card p {
+            color: var(--text-light);
+            margin-bottom: 20px;
+        }
+
+        .service-link {
+            display: inline-block;
+            color: var(--primary-color);
+            font-weight: 500;
+            transition: var(--transition);
+        }
+
+        .service-link:hover {
+            color: var(--secondary-color);
+        }
+
+        .service-link i {
+            margin-left: 5px;
+            transition: var(--transition);
+        }
+
+        .service-link:hover i {
+            transform: translateX(5px);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--dark-color);
+            color: var(--white);
+            padding: 30px 0;
+            text-align: center;
+        }
+
+        footer p {
+            margin: 0;
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 992px) {
+            .nav-menu {
+                display: none;
+            }
+
+            .toggle-btn {
+                display: block;
+            }
+
+            .dropdown_menu {
+                display: block;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .hero {
+                height: 50vh;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .dropdown_menu {
+                width: 100%;
+                right: 0;
+                left: 0;
+                border-radius: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header Section -->
+    <header>
+        <nav class="navbar section-content">
+            <a href="index.html" class="nav-logo">
+                <h2 class="logo-text">IT<span>Glow</span></h2>
+            </a>
+            <ul class="nav-menu">
+                <li class="nav-item">
+                    <a href="About.html" class="nav-link">About</a>
+                </li>
+                <li class="nav-item">
+                    <a href="Services.html" class="nav-link">Services</a>
+                </li>
+                <li class="nav-item">
+                    <a href="Portfolio.html" class="nav-link">Portfolio</a>
+                </li>
+                <li class="nav-item">
+                    <a href="ContactUs.html" class="nav-link">Contact Us</a>
+                </li>
+            </ul>
+            
+            <div class="toggle-btn">
+                <i class="ri-menu-line"></i>
+            </div>
+
+            <div class="dropdown_menu">
+                <li class="nav-item">
+                    <a href="About.html" class="nav-link">About</a>
+                </li>
+                <li class="nav-item">
+                    <a href="Services.html" class="nav-link">Services</a>
+                </li>
+                <li class="nav-item">
+                    <a href="Portfolio.html" class="nav-link">Portfolio</a>
+                </li>
+                <li class="nav-item">
+                    <a href="ContactUs.html" class="nav-link">Contact Us</a>
+                </li>
+            </div>
+        </nav> 
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content section-content">
+            <h1>IT Solutions Designed Around Your Needs</h1>
+            <p>From seamless software development to cutting-edge cloud solutions, we ensure your technology accelerates growth and drives success.</p>
+            <a href="#services" class="btn">Explore Our Services</a>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="services">
+        <div class="section-content">
+            <h2 class="section-title">Our Services</h2>
+            <p class="section-subtitle">We offer comprehensive IT solutions tailored to your business requirements</p>
+            
+            <div class="services-container">
+                <!-- Web Development -->
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="ri-code-s-slash-line"></i>
+                    </div>
+                    <h3>Web Development</h3>
+                    <p>We create responsive and high-performance websites tailored to your business needs with modern technologies.</p>
+                    <a href="1.html" class="service-link">Learn more <i class="ri-arrow-right-line"></i></a>
+                </div>
+                
+                <!-- Mobile Apps -->
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="ri-smartphone-line"></i>
+                    </div>
+                    <h3>Mobile Apps</h3>
+                    <p>Our team develops user-friendly mobile applications for both iOS and Android platforms with native and hybrid approaches.</p>
+                    <a href="2.html" class="service-link">Learn more <i class="ri-arrow-right-line"></i></a>
+                </div>
+                
+                <!-- WordPress Development -->
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="ri-wordpress-line"></i>
+                    </div>
+                    <h3>WordPress Development</h3>
+                    <p>Custom WordPress solutions including theme development, plugin customization, and performance optimization.</p>
+                    <a href="3.html" class="service-link">Learn more <i class="ri-arrow-right-line"></i></a>
+                </div>
+                
+                <!-- UI/UX Design -->
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="ri-pencil-ruler-line"></i>
+                    </div>
+                    <h3>UI/UX Design</h3>
+                    <p>Beautiful and intuitive user interfaces designed to enhance user experience and drive engagement.</p>
+                    <a href="4.html" class="service-link">Learn more <i class="ri-arrow-right-line"></i></a>
+                </div>
+                
+                <!-- Cloud Services -->
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="ri-cloud-line"></i>
+                    </div>
+                    <h3>Cloud Services</h3>
+                    <p>Comprehensive cloud solutions including migration, management, and security for AWS, Azure, and GCP.</p>
+                    <a href="6.html" class="service-link">Learn more <i class="ri-arrow-right-line"></i></a>
+                </div>
+                
+                <!-- Graphic Design -->
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="ri-image-edit-line"></i>
+                    </div>
+                    <h3>Graphic Design</h3>
+                    <p>Professional Photoshop editing, branding, and visual design services for your marketing needs.</p>
+                    <a href="7.html" class="service-link">Learn more <i class="ri-arrow-right-line"></i></a>
+                </div>
+                
+                <!-- Digital Marketing -->
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="ri-megaphone-line"></i>
+                    </div>
+                    <h3>Digital Marketing</h3>
+                    <p>Promote your business online using social media, SEO, and Google My Business strategies.</p>
+                    <a href="8.html" class="service-link">Learn more <i class="ri-arrow-right-line"></i></a>
+                </div>
+                
+                <!-- Custom Solutions -->
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="ri-customer-service-line"></i>
+                    </div>
+                    <h3>Custom Solutions</h3>
+                    <p>Tailored IT solutions designed specifically for your unique business requirements.</p>
+                    <a href="#contact" class="service-link">Get in touch <i class="ri-arrow-right-line"></i></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="section-content">
+            <p>&copy; <span id="year"></span> ITGlow | All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        // Set current year in footer
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        // Toggle mobile menu
+        const toggleBtn = document.querySelector('.toggle-btn');
+        const toggleBtnIcon = document.querySelector('.toggle-btn i');
+        const dropDownMenu = document.querySelector('.dropdown_menu');
+
+        toggleBtn.onclick = function () {
+            dropDownMenu.classList.toggle('open');
+            const isOpen = dropDownMenu.classList.contains('open');
+            toggleBtnIcon.className = isOpen ? 'ri-close-line' : 'ri-menu-line';
+        }
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,1316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ITGlow - Innovative IT Solutions</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
+  <style>
+    :root {
+      --primary-color: #4361ee;
+      --secondary-color: #3f37c9;
+      --accent-color: #4cc9f0;
+      --dark-color: #1a1a2e;
+      --light-color: #f8f9fa;
+      --text-color: #333;
+      --text-light: #6c757d;
+      --white: #ffffff;
+      --transition: all 0.3s ease;
+      --shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      --radius: 8px;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      line-height: 1.6;
+      color: var(--text-color);
+      background-color: var(--white);
+      overflow-x: hidden;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    ul {
+      list-style: none;
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+    }
+
+    .section-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 12px 30px;
+      background: var(--primary-color);
+      color: var(--white);
+      border: none;
+      border-radius: var(--radius);
+      cursor: pointer;
+      transition: var(--transition);
+      font-weight: 500;
+      text-align: center;
+    }
+
+    .btn:hover {
+      background: var(--secondary-color);
+      transform: translateY(-3px);
+      box-shadow: var(--shadow);
+    }
+
+    .section-title {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+      color: var(--dark-color);
+      text-align: center;
+      position: relative;
+    }
+
+    .section-title::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80px;
+      height: 4px;
+      background: var(--primary-color);
+      border-radius: 2px;
+    }
+
+    .section-subtitle {
+      font-size: 1.1rem;
+      color: var(--text-light);
+      text-align: center;
+      max-width: 700px;
+      margin: 0 auto 3rem;
+    }
+
+    /* Header & Navigation */
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 1000;
+      transition: var(--transition);
+    }
+
+    header.scrolled {
+      background-color: var(--white);
+      box-shadow: var(--shadow);
+    }
+
+    header.scrolled .nav-link {
+      color: var(--text-color);
+    }
+
+    header.scrolled .logo-text {
+      color: var(--primary-color);
+    }
+
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 0;
+    }
+
+    .logo-text {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: var(--white);
+      transition: var(--transition);
+    }
+
+    .logo-text span {
+      color: var(--accent-color);
+    }
+
+    .nav-menu {
+      display: flex;
+      align-items: center;
+      gap: 30px;
+    }
+
+    .nav-link {
+      font-weight: 500;
+      color: var(--white);
+      transition: var(--transition);
+      position: relative;
+    }
+
+    .nav-link:hover {
+      color: var(--accent-color);
+    }
+
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--accent-color);
+      transition: var(--transition);
+    }
+
+    .nav-link:hover::after {
+      width: 100%;
+    }
+
+    .toggle-btn {
+      color: var(--white);
+      font-size: 1.5rem;
+      cursor: pointer;
+      display: none;
+    }
+
+    .dropdown_menu {
+      display: none;
+      position: absolute;
+      right: 2rem;
+      top: 80px;
+      width: 300px;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(15px);
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      opacity: 0;
+      transform: translateY(-20px);
+      transition: opacity 0.3s ease, transform 0.3s ease;
+    }
+
+    .dropdown_menu.open {
+      opacity: 1;
+      transform: translateY(0);
+      display: block;
+    }
+
+    .dropdown_menu .nav-item {
+      padding: 0.7rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .dropdown_menu .nav-link {
+      color: var(--text-color);
+    }
+
+    /* Hero Section */
+    .hero-section {
+      height: 100vh;
+      background: linear-gradient(rgba(26, 26, 46, 0.8), rgba(26, 26, 46, 0.8)), 
+                  url('https://images.unsplash.com/photo-1573164713988-8665fc963095?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2069&q=80') no-repeat center center/cover;
+      display: flex;
+      align-items: center;
+      text-align: center;
+      color: var(--white);
+      position: relative;
+    }
+
+    .hero-details {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .hero-section .title {
+      font-size: 4rem;
+      margin-bottom: 1.5rem;
+      line-height: 1.2;
+    }
+
+    .hero-section .subtitle {
+      font-size: 1.2rem;
+      margin-bottom: 2rem;
+      opacity: 0.9;
+    }
+
+    .hero-buttons {
+      display: flex;
+      gap: 20px;
+      justify-content: center;
+    }
+
+    /* Icon Slider */
+    .slider-section {
+      padding: 80px 0;
+      background-color: var(--light-color);
+    }
+
+    .slider-container {
+      overflow: hidden;
+      position: relative;
+    }
+
+    .slider {
+      display: flex;
+      animation: slide 20s linear infinite;
+      width: calc(250px * 14);
+    }
+
+    .slide {
+      flex: 0 0 250px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      text-align: center;
+      transition: var(--transition);
+    }
+
+    .slide:hover {
+      transform: translateY(-10px);
+    }
+
+    .slide img {
+      width: 80px;
+      height: 80px;
+      object-fit: contain;
+      margin-bottom: 15px;
+      filter: grayscale(100%);
+      transition: var(--transition);
+    }
+
+    .slide:hover img {
+      filter: grayscale(0%);
+    }
+
+    .slide p {
+      font-weight: 500;
+      color: var(--text-color);
+    }
+
+    @keyframes slide {
+      0% {
+        transform: translateX(0);
+      }
+      100% {
+        transform: translateX(calc(-250px * 7));
+      }
+    }
+
+    /* About Section */
+    .home {
+      display: flex;
+      align-items: center;
+      padding: 100px 0;
+    }
+
+    .home-imgh {
+      flex: 1;
+      padding: 0 50px;
+    }
+
+    .home-img {
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      transition: var(--transition);
+    }
+
+    .home-img:hover {
+      transform: scale(1.03);
+    }
+
+    .home-content {
+      flex: 1;
+    }
+
+    .home-content h2 {
+      font-size: 2.5rem;
+      margin-bottom: 20px;
+      color: var(--dark-color);
+    }
+
+    .home-content p {
+      margin-bottom: 30px;
+      color: var(--text-light);
+      font-size: 1.1rem;
+    }
+
+    .social-icons {
+      display: flex;
+      gap: 15px;
+    }
+
+    .social-icons a {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: var(--light-color);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: var(--transition);
+    }
+
+    .social-icons a:hover {
+      background: var(--primary-color);
+      color: var(--white);
+      transform: translateY(-5px);
+    }
+
+    /* Experience Section */
+    .work-experience {
+      padding: 80px 0;
+      background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    }
+
+    .experience-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+      margin-top: 50px;
+    }
+
+    .experience-card {
+      background: var(--white);
+      padding: 30px;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      transition: var(--transition);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .experience-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+    }
+
+    .experience-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 5px;
+      height: 100%;
+      background: var(--primary-color);
+    }
+
+    .job-title {
+      font-size: 1.3rem;
+      margin-bottom: 10px;
+      color: var(--dark-color);
+    }
+
+    .company-name {
+      font-weight: 600;
+      color: var(--primary-color);
+      margin-bottom: 5px;
+    }
+
+    .job-duration {
+      display: inline-block;
+      font-size: 0.9rem;
+      color: var(--text-light);
+      margin-bottom: 15px;
+      background: var(--light-color);
+      padding: 3px 10px;
+      border-radius: 20px;
+    }
+
+    .job-description {
+      color: var(--text-light);
+    }
+
+    /* Vision Section */
+    .home2 {
+      display: flex;
+      align-items: center;
+      padding: 100px 0;
+      background-color: var(--light-color);
+    }
+
+    .home-img2 {
+      flex: 1;
+      order: 2;
+      padding: 0 50px;
+    }
+
+    .home-content2 {
+      flex: 1;
+    }
+
+    .home-content2 h2 {
+      font-size: 2.5rem;
+      margin-bottom: 20px;
+      color: var(--dark-color);
+    }
+
+    .home-content2 p {
+      margin-bottom: 30px;
+      color: var(--text-light);
+      font-size: 1.1rem;
+    }
+
+    /* Benefits Section */
+    .benefits-section {
+      padding: 80px 0;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: var(--white);
+    }
+
+    .benefits-section .section-title {
+      color: var(--white);
+    }
+
+    .benefits-section .section-title::after {
+      background: var(--white);
+    }
+
+    .benefits-section .section-subtitle {
+      color: rgba(255, 255, 255, 0.8);
+    }
+
+    .benefits-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 30px;
+      margin-top: 50px;
+    }
+
+    .benefit {
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      padding: 40px 30px;
+      border-radius: var(--radius);
+      text-align: center;
+      transition: var(--transition);
+    }
+
+    .benefit:hover {
+      transform: translateY(-10px);
+      background: rgba(255, 255, 255, 0.2);
+    }
+
+    .benefit h2 {
+      font-size: 1.5rem;
+      margin-bottom: 15px;
+    }
+
+    .benefit p {
+      opacity: 0.9;
+    }
+
+    .benefit i {
+      font-size: 2.5rem;
+      margin-bottom: 20px;
+      color: var(--accent-color);
+    }
+
+    /* Contact Section */
+    .contact {
+      padding: 100px 0;
+    }
+
+    .contact-container {
+      display: flex;
+      gap: 50px;
+      align-items: center;
+    }
+
+    .contact-info {
+      flex: 1;
+    }
+
+    .co-img {
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      margin-bottom: 30px;
+    }
+
+    .contact-form {
+      flex: 1;
+      background: var(--light-color);
+      padding: 40px;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+
+    .contact-form h3 {
+      font-size: 1.8rem;
+      margin-bottom: 20px;
+      color: var(--dark-color);
+    }
+
+    .contact-form input,
+    .contact-form textarea {
+      width: 100%;
+      padding: 15px;
+      margin-bottom: 20px;
+      border: 1px solid #ddd;
+      border-radius: var(--radius);
+      font-family: inherit;
+      transition: var(--transition);
+    }
+
+    .contact-form input:focus,
+    .contact-form textarea:focus {
+      outline: none;
+      border-color: var(--primary-color);
+      box-shadow: 0 0 0 3px rgba(67, 97, 238, 0.2);
+    }
+
+    .contact-form textarea {
+      resize: vertical;
+      min-height: 150px;
+    }
+
+    /* Footer */
+    footer {
+      background: var(--dark-color);
+      color: var(--white);
+      padding: 80px 0 0;
+    }
+
+    .footer-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 40px;
+      margin-bottom: 40px;
+    }
+
+    .footer-about {
+      margin-bottom: 30px;
+    }
+
+    .footer-logo {
+      font-size: 1.8rem;
+      font-weight: 700;
+      margin-bottom: 20px;
+      color: var(--white);
+    }
+
+    .footer-logo span {
+      color: var(--accent-color);
+    }
+
+    .P1 {
+      opacity: 0.8;
+      line-height: 1.8;
+    }
+
+    .footer-links h3,
+    .footer-social h3 {
+      font-size: 1.3rem;
+      margin-bottom: 20px;
+      position: relative;
+      padding-bottom: 10px;
+    }
+
+    .footer-links h3::after,
+    .footer-social h3::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 50px;
+      height: 2px;
+      background: var(--primary-color);
+    }
+
+    .footer-links ul li {
+      margin-bottom: 10px;
+    }
+
+    .footer-links ul li a {
+      opacity: 0.8;
+      transition: var(--transition);
+    }
+
+    .footer-links ul li a:hover {
+      opacity: 1;
+      color: var(--accent-color);
+      padding-left: 5px;
+    }
+
+    .footer-social .social-icons {
+      display: flex;
+      gap: 15px;
+    }
+
+    .footer-social .social-icons a {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: var(--transition);
+    }
+
+    .footer-social .social-icons a:hover {
+      background: var(--primary-color);
+      transform: translateY(-5px);
+    }
+
+    .footer-bottom {
+      text-align: center;
+      padding: 20px 0;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      opacity: 0.8;
+      font-size: 0.9rem;
+    }
+
+    /* Responsive Styles */
+    @media (max-width: 992px) {
+      .home,
+      .home2 {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .home-imgh,
+      .home-img2 {
+        padding: 0;
+        margin-bottom: 40px;
+      }
+
+      .home-img2 {
+        order: 0;
+      }
+
+      .contact-container {
+        flex-direction: column;
+      }
+
+      .nav-menu {
+        display: none;
+      }
+
+      .toggle-btn {
+        display: block;
+      }
+
+      .dropdown_menu {
+        display: block;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .hero-section .title {
+        font-size: 3rem;
+      }
+
+      .hero-section .subtitle {
+        font-size: 1rem;
+      }
+
+      .section-title {
+        font-size: 2rem;
+      }
+
+      .home-content h2,
+      .home-content2 h2 {
+        font-size: 2rem;
+      }
+
+      .hero-buttons {
+        flex-direction: column;
+        gap: 15px;
+      }
+
+      .btn {
+        width: 100%;
+      }
+    }
+
+    @media (max-width: 576px) {
+      .hero-section .title {
+        font-size: 2.5rem;
+      }
+
+      .section-title {
+        font-size: 1.8rem;
+      }
+
+      .experience-card {
+        padding: 20px;
+      }
+    
+    }
+        /* Responsive Styles */
+        /* Pricing Section */
+.pricing-section {
+  padding: 80px 0;
+  background-color: var(--light-color);
+}
+
+.pricing-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 30px;
+  margin-top: 50px;
+}
+
+.pricing-card {
+  background: var(--white);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 30px;
+  position: relative;
+  transition: var(--transition);
+  border: 1px solid #eee;
+}
+
+.pricing-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+}
+
+.pricing-card.featured {
+  border: 2px solid var(--primary-color);
+  transform: scale(1.05);
+}
+
+.pricing-card.featured:hover {
+  transform: scale(1.05) translateY(-10px);
+}
+
+.recommended-badge {
+  position: absolute;
+  top: -15px;
+  right: 20px;
+  background: var(--primary-color);
+  color: var(--white);
+  padding: 5px 15px;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+.pricing-header {
+  text-align: center;
+  margin-bottom: 25px;
+  padding-bottom: 25px;
+  border-bottom: 1px solid #eee;
+}
+
+.pricing-header h3 {
+  font-size: 1.5rem;
+  color: var(--dark-color);
+  margin-bottom: 10px;
+}
+
+.price {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--primary-color);
+  margin-bottom: 10px;
+}
+
+.plan-description {
+  color: var(--text-light);
+  font-size: 0.9rem;
+}
+
+.features-list {
+  margin-bottom: 30px;
+}
+
+.features-list li {
+  margin-bottom: 15px;
+  display: flex;
+  align-items: flex-start;
+}
+
+.features-list i {
+  margin-right: 10px;
+  font-size: 1.1rem;
+}
+
+.features-list .ri-check-line {
+  color: var(--primary-color);
+}
+
+.features-list .ri-close-line {
+  color: #ccc;
+}
+
+.not-included {
+  color: var(--text-light);
+  text-decoration: line-through;
+}
+
+.btn-outline {
+  background: transparent;
+  border: 2px solid var(--primary-color);
+  color: var(--primary-color);
+}
+
+.btn-outline:hover {
+  background: var(--primary-color);
+  color: var(--white);
+}
+
+.custom-plan {
+  text-align: center;
+  margin-top: 50px;
+  font-size: 1.1rem;
+}
+
+.custom-plan a {
+  color: var(--primary-color);
+  font-weight: 600;
+  transition: var(--transition);
+}
+
+.custom-plan a:hover {
+  text-decoration: underline;
+}
+
+@media (max-width: 992px) {
+  .pricing-card.featured {
+    transform: scale(1);
+  }
+  
+  .pricing-card.featured:hover {
+    transform: scale(1) translateY(-10px);
+  }
+}
+
+@media (max-width: 768px) {
+  .pricing-container {
+    grid-template-columns: 1fr;
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+  </style>
+</head>
+
+<body>
+  <!-- Header -->
+  <header id="header">
+    <nav class="navbar section-content">
+      <a href="index.html" class="nav-logo">
+        <h2 class="logo-text">IT<span>Glow</span></h2>
+      </a>
+      <ul class="nav-menu">
+        <li class="nav-item">
+          <a href="About.html" class="nav-link">About</a>
+        </li>
+        <li class="nav-item">
+          <a href="Services.html" class="nav-link">Services</a>
+        </li>
+        <li class="nav-item">
+          <a href="Portfolio.html" class="nav-link">Portfolio</a>
+        </li>
+        <li class="nav-item">
+          <a href="ContactUs.html" class="nav-link">Contact Us</a>
+        </li>
+      </ul>
+      
+      <div class="toggle-btn">
+        <i class="ri-menu-line"></i>
+      </div>
+
+      <div class="dropdown_menu">
+        <li class="nav-item">
+          <a href="About.html" class="nav-link">About</a>
+        </li>
+        <li class="nav-item">
+          <a href="Services.html" class="nav-link">Services</a>
+        </li>
+        <li class="nav-item">
+          <a href="Portfolio.html" class="nav-link">Portfolio</a>
+        </li>
+        <li class="nav-item">
+          <a href="ContactUs.html" class="nav-link">Contact Us</a>
+        </li>
+      </div>
+    </nav> 
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero-section">
+    <div class="section-content">
+      <div class="hero-details">
+        <h1 class="title">Innovative IT Solutions for Your Business</h1>
+        <p class="subtitle">We provide cutting-edge technology services to help your business thrive in the digital age. Our expert team delivers customized solutions tailored to your unique needs.</p>
+        <div class="hero-buttons">
+          <a href="#contact" class="btn">Get Started</a>
+          <a href="Services.html" class="btn" style="background: transparent; border: 2px solid var(--white);">Our Services</a>
+        </div>
+      </div>
+    </div>               
+  </section>
+
+  <!-- Services Slider -->
+  <section class="slider-section">
+    <div class="section-content">
+      <h2 class="section-title">Our Services</h2>
+      <p class="section-subtitle">We offer a comprehensive range of IT services to meet all your technology needs</p>
+      
+      <div class="slider-container">
+        <div class="slider">
+          <div class="slide">
+            <img src="https://img.icons8.com/?size=100&id=12447&format=png&color=4361ee" alt="Software Development" />
+            <p>Software Development</p>
+          </div>
+          <div class="slide">
+            <img src="https://img.icons8.com/?size=100&id=IwkGgO-3zk0A&format=png&color=4361ee" alt="Cloud Computing" />
+            <p>Cloud Computing</p>
+          </div>
+          <div class="slide">
+            <img src="https://img.icons8.com/?size=100&id=rl0sIZNchpNB&format=png&color=4361ee" alt="Cybersecurity" />
+            <p>Cybersecurity</p>
+          </div>
+          <div class="slide">
+            <img src="https://img.icons8.com/?size=100&id=11227&format=png&color=4361ee" alt="IT Consulting" />
+            <p>IT Consulting</p>
+          </div>
+          <div class="slide">
+            <img src="https://img.icons8.com/?size=100&id=mCK0nFiFU2X6&format=png&color=4361ee" alt="App Development" />
+            <p>App Development</p>
+          </div>
+          <div class="slide">
+            <img src="https://img.icons8.com/?size=100&id=efPy7h7RqVHB&format=png&color=4361ee" alt="Networking" />
+            <p>Networking</p>
+          </div>
+          <div class="slide">
+            <img src="https://img.icons8.com/?size=100&id=12472&format=png&color=4361ee" alt="Wordpress" />
+            <p>Wordpress</p>
+          </div>
+          <!-- Duplicate slides for infinite loop -->
+          <div class="slide">
+            <img src="https://img.icons8.com/?size=100&id=12447&format=png&color=4361ee" alt="Software Development" />
+            <p>Software Development</p>
+          </div>
+          <div class="slide">
+            <img src="https://img.icons8.com/?size=100&id=IwkGgO-3zk0A&format=png&color=4361ee" alt="Cloud Computing" />
+            <p>Cloud Computing</p>
+          </div>
+          <div class="slide">
+            <img src="https://img.icons8.com/?size=100&id=rl0sIZNchpNB&format=png&color=4361ee" alt="Cybersecurity" />
+            <p>Cybersecurity</p>
+          </div>
+          <div class="slide">
+            <img src="https://img.icons8.com/?size=100&id=11227&format=png&color=4361ee" alt="IT Consulting" />
+            <p>IT Consulting</p>
+          </div>
+          <div class="slide">
+            <img src="https://img.icons8.com/?size=100&id=mCK0nFiFU2X6&format=png&color=4361ee" alt="App Development" />
+            <p>App Development</p>
+          </div>
+          <div class="slide">
+            <img src="https://img.icons8.com/?size=100&id=efPy7h7RqVHB&format=png&color=4361ee" alt="Networking" />
+            <p>Networking</p>
+          </div>
+          <div class="slide">
+            <img src="https://img.icons8.com/?size=100&id=12472&format=png&color=4361ee" alt="Wordpress" />
+            <p>Wordpress</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section class="home section-content"> 
+    <div class="home-imgh">
+      <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="ITGlow Team" class="home-img">
+    </div>
+    <div class="home-content">
+      <h2>Hi and welcome to ITGlow - Innovating Tomorrow, Today</h2>
+      <p>At ITGlow, we specialize in providing innovative technology services tailored to your business needs. Whether you need custom software, web design, cloud solutions, or IT consulting, we help businesses thrive in the digital economy. Our team of experts combines technical expertise with creative thinking to deliver solutions that drive growth and efficiency.</p>
+      <div class="social-icons">
+        <a href="#"><i class="ri-facebook-line"></i></a>
+        <a href="#"><i class="ri-linkedin-line"></i></a>
+        <a href="#"><i class="ri-instagram-line"></i></a>
+        <a href="#"><i class="ri-twitter-x-line"></i></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Experience Section -->
+  <section class="work-experience">
+    <div class="section-content">
+      <h2 class="section-title">Our Experience</h2>
+      <p class="section-subtitle">With years of industry experience, we've helped businesses of all sizes achieve their technology goals</p>
+      
+      <div class="experience-container">
+        <div class="experience-card">
+          <h3 class="job-title">Junior Web Designer</h3>
+          <p class="company-name">DigiCore Solutions Pvt Ltd</p>
+          <span class="job-duration">June 2017 – August 2019</span>
+          <p class="job-description">
+            Created responsive website layouts using HTML, CSS, and Bootstrap. Collaborated with designers to implement UI/UX best practices and improve user engagement.
+          </p>
+        </div>
+
+        <div class="experience-card">
+          <h3 class="job-title">Front-End Developer</h3>
+          <p class="company-name">CyberVista Technologies Pvt Ltd</p>
+          <span class="job-duration">September 2019 – December 2021</span>
+          <p class="job-description">
+            Developed interactive web applications using React.js and Vue.js. Optimized website performance, improving page load speeds by 30% and enhancing user experience.
+          </p>
+        </div>
+
+        <div class="experience-card">
+          <h3 class="job-title">UI/UX Designer</h3>
+          <p class="company-name">InfoSphere Innovations Pvt Ltd</p>
+          <span class="job-duration">Jan 2017 - May 2018</span>
+          <p class="job-description">
+            Designed intuitive user interfaces and interactive prototypes for web and mobile applications. Conducted user research and testing to validate design decisions.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Vision Section -->
+  <section class="home2 section-content">
+    <div class="home-img2">
+      <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="ITGlow Vision">
+    </div>
+    <div class="home-content2">
+      <h2>Our Vision</h2>
+      <p>We envision a world where technology bridges gaps, inspires creativity, and enables endless possibilities. Our goal is to become a global leader in the IT industry by continuously pushing boundaries and setting new standards in quality and innovation. We believe in creating technology that not only solves problems but also enhances human experiences and drives positive change in society.</p>
+      <a href="About.html" class="btn">About Us</a>
+    </div>
+  </section>
+
+  <!-- Benefits Section -->
+  <section class="benefits-section">
+    <div class="section-content">
+      <h2 class="section-title">Why Choose ITGlow</h2>
+      <p class="section-subtitle">We deliver exceptional value through our unique approach to technology solutions</p>
+      
+      <div class="benefits-container">
+        <div class="benefit">
+          <i class="ri-flashlight-line"></i>
+          <h2>Cutting-Edge Technology</h2>
+          <p>We use the latest tools and technologies to provide innovative solutions that keep you ahead of the competition.</p>
+        </div>
+        <div class="benefit">
+          <i class="ri-customer-service-2-line"></i>
+          <h2>24/7 Support</h2>
+          <p>Our dedicated support team is always available to assist you with any issues or concerns, day or night.</p>
+        </div>
+        <div class="benefit">
+          <i class="ri-tools-line"></i>
+          <h2>Custom Solutions</h2>
+          <p>Every solution we provide is carefully tailored to meet your unique business needs and objectives.</p>
+        </div>
+        <div class="benefit">
+          <i class="ri-money-dollar-circle-line"></i>
+          <h2>Cost Efficiency</h2>
+          <p>We help you save money while improving productivity through our optimized processes and solutions.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact" class="contact">
+    <div class="section-content">
+      <h2 class="section-title">Get In Touch</h2>
+      <p class="section-subtitle">Have a project in mind or want to learn more about our services? Contact us today!</p>
+      
+      <div class="contact-container">
+        <div class="contact-info">
+          <img src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Contact ITGlow" class="co-img">
+          <a href="Services.html" class="btn">View Services</a>
+        </div>
+
+        <form id="contactForm" class="contact-form" action="https://api.web3forms.com/submit" method="POST">
+          <h3>Send a Message</h3>
+          <input type="hidden" name="access_key" value="636c7ce3-7e2a-4c2c-bf44-91a540658229">
+          <input type="text" name="name" placeholder="Your Name" required>
+          <input type="email" name="email" placeholder="Your Email" required>
+          <input type="text" name="subject" placeholder="Subject" required>
+          <textarea name="message" placeholder="Your Message" required></textarea>
+          <button type="submit" class="btn">Send Message</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!--new one add-->
+  <!-- Add this section after the Benefits section in your HTML -->
+
+<section class="pricing-section">
+  <div class="section-content">
+    <h2 class="section-title">Website Package Plans</h2>
+    <p class="section-subtitle">Choose the perfect package for your business needs</p>
+    
+    <div class="pricing-container">
+      <!-- Basic Plan -->
+      <div class="pricing-card">
+        <div class="pricing-header">
+          <h3>Basic Plan</h3>
+          <div class="price">$8</div>
+          <p class="plan-description">Perfect for personal websites or small projects</p>
+        </div>
+        <ul class="features-list">
+          <li><i class="ri-check-line"></i> <strong>1 Page</strong> website</li>
+          <li><i class="ri-check-line"></i> Free subdomain <code>(yourname.github.io)</code></li>
+          <li><i class="ri-check-line"></i> Free Hosting (GitHub/Netlify)</li>
+          <li><i class="ri-check-line"></i> Basic design using template</li>
+          <li><i class="ri-check-line"></i> Responsive (basic)</li>
+          <li><i class="ri-check-line"></i> Contact Form or WhatsApp Button</li>
+          <li><i class="ri-close-line"></i> <span class="not-included">SEO</span></li>
+          <li><i class="ri-check-line"></i> Free SSL (HTTPS)</li>
+          <li><i class="ri-close-line"></i> <span class="not-included">Analytics</span></li>
+          <li><i class="ri-check-line"></i> Delivery in 2-3 Days</li>
+          <li><i class="ri-check-line"></i> 1 Revision</li>
+          <li><i class="ri-check-line"></i> 3 Days Support</li>
+        </ul>
+        <a href="#contact" class="btn btn-outline">Get Started</a>
+      </div>
+      
+      <!-- Standard Plan (Recommended) -->
+      <div class="pricing-card featured">
+        <div class="recommended-badge">Most Popular</div>
+        <div class="pricing-header">
+          <h3>Standard Plan</h3>
+          <div class="price">$14</div>
+          <p class="plan-description">Ideal for small businesses and startups</p>
+        </div>
+        <ul class="features-list">
+          <li><i class="ri-check-line"></i> <strong>3-5 Pages</strong> website</li>
+          <li><i class="ri-check-line"></i> Free subdomain or customer-owned domain</li>
+          <li><i class="ri-check-line"></i> Free Hosting (Netlify)</li>
+          <li><i class="ri-check-line"></i> Custom design with brand colors</li>
+          <li><i class="ri-check-line"></i> Fully responsive</li>
+          <li><i class="ri-check-line"></i> Contact Form + WhatsApp</li>
+          <li><i class="ri-check-line"></i> Basic SEO (keywords, titles)</li>
+          <li><i class="ri-check-line"></i> Free SSL</li>
+          <li><i class="ri-check-line"></i> Google Analytics</li>
+          <li><i class="ri-check-line"></i> Delivery in 4-6 Days</li>
+          <li><i class="ri-check-line"></i> 2 Revisions</li>
+          <li><i class="ri-check-line"></i> 7 Days Support</li>
+        </ul>
+        <a href="#contact" class="btn">Get Started</a>
+      </div>
+      
+      <!-- Premium Plan -->
+      <div class="pricing-card">
+        <div class="pricing-header">
+          <h3>Premium Plan</h3>
+          <div class="price">$30</div>
+          <p class="plan-description">Complete solution for growing businesses</p>
+        </div>
+        <ul class="features-list">
+          <li><i class="ri-check-line"></i> <strong>5-10 Pages</strong> website</li>
+          <li><i class="ri-check-line"></i> Free .com domain setup (if you buy it)</li>
+          <li><i class="ri-check-line"></i> Premium Hosting Setup (Customer pays)</li>
+          <li><i class="ri-check-line"></i> Fully customized modern layout</li>
+          <li><i class="ri-check-line"></i> Fully responsive + speed optimized</li>
+          <li><i class="ri-check-line"></i> WhatsApp + Email Form + Call Button</li>
+          <li><i class="ri-check-line"></i> SEO Optimized with keywords + sitemap</li>
+          <li><i class="ri-check-line"></i> SSL + Security plugins (WordPress)</li>
+          <li><i class="ri-check-line"></i> Analytics + Facebook Pixel setup</li>
+          <li><i class="ri-check-line"></i> Delivery in 6-10 Days</li>
+          <li><i class="ri-check-line"></i> 3+ Revisions</li>
+          <li><i class="ri-check-line"></i> 1 Month Support</li>
+        </ul>
+        <a href="#contact" class="btn btn-outline">Get Started</a>
+      </div>
+    </div>
+    
+    <div class="custom-plan">
+      <p>Need something custom? <a href="#contact">Contact us</a> for a tailored solution!</p>
+    </div>
+  </div>
+</section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="section-content">
+      <div class="footer-container">
+        <div class="footer-about">
+          <h2 class="footer-logo">IT<span>Glow</span></h2>
+          <p class="P1">Empowering businesses with innovative IT solutions to succeed in the digital age. We combine technical expertise with creative thinking to deliver exceptional results.</p>
+        </div>
+
+        <div class="footer-links">
+          <h3>Quick Links</h3>
+          <ul>
+            <li><a href="About.html">About Us</a></li>
+            <li><a href="Services.html">Our Services</a></li>
+            <li><a href="Portfolio.html">Portfolio</a></li>
+            <li><a href="ContactUs.html">Contact</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-social">
+          <h3>Follow Us</h3>
+          <div class="social-icons">
+            <a href="#"><i class="ri-facebook-line"></i></a>
+            <a href="#"><i class="ri-linkedin-line"></i></a>
+            <a href="#"><i class="ri-instagram-line"></i></a>
+            <a href="#"><i class="ri-twitter-x-line"></i></a>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; <span id="year"></span> ITGlow | All Rights Reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Set current year in footer
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Toggle mobile menu
+    const toggleBtn = document.querySelector('.toggle-btn');
+    const toggleBtnIcon = document.querySelector('.toggle-btn i');
+    const dropDownMenu = document.querySelector('.dropdown_menu');
+
+    toggleBtn.onclick = function () {
+      dropDownMenu.classList.toggle('open');
+      const isOpen = dropDownMenu.classList.contains('open');
+      toggleBtnIcon.className = isOpen ? 'ri-close-line' : 'ri-menu-line';
+    }
+
+    // Header scroll effect
+    window.addEventListener('scroll', function() {
+      const header = document.querySelector('header');
+      header.classList.toggle('scrolled', window.scrollY > 100);
+    });
+
+    // Smooth scrolling for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        
+        document.querySelector(this.getAttribute('href')).scrollIntoView({
+          behavior: 'smooth'
+        });
+      });
+    });
+  </script>
+</body>
+</html>
