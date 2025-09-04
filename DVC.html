@@ -1,0 +1,948 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ITGlow - Digital Visiting Cards</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        :root {
+            --primary: #2563eb;
+            --primary-dark: #1d4ed8;
+            --secondary: #64748b;
+            --light: #f8fafc;
+            --dark: #1e293b;
+            --success: #10b981;
+            --card-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+        
+        body {
+            background-color: #f1f5f9;
+            color: var(--dark);
+            line-height: 1.6;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header Styles */
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: white;
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo i {
+            margin-right: 10px;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 1.5rem;
+        }
+        
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: var(--transition);
+        }
+        
+        nav ul li a:hover {
+            color: #e0f2fe;
+        }
+        
+        /* Hero Section */
+        .hero {
+            padding: 4rem 0;
+            text-align: center;
+            background: linear-gradient(rgba(37, 99, 235, 0.9), rgba(29, 78, 216, 0.9)), url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect width="100" height="100" fill="%23f8fafc" opacity="0.2"/><path d="M0 0L100 100" stroke="%23ffffff" stroke-width="1" opacity="0.2"/><path d="M100 0L0 100" stroke="%23ffffff" stroke-width="1" opacity="0.2"/></svg>');
+            background-size: cover;
+            color: white;
+        }
+        
+        .hero h1 {
+            font-size: 2.8rem;
+            margin-bottom: 1rem;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 2rem;
+        }
+        
+        /* Search Section */
+        .search-section {
+            padding: 2rem 0;
+            background-color: white;
+        }
+        
+        .search-container {
+            max-width: 600px;
+            margin: 0 auto;
+            position: relative;
+        }
+        
+        .search-box {
+            width: 100%;
+            padding: 15px 20px;
+            border: 2px solid #e2e8f0;
+            border-radius: 50px;
+            font-size: 1rem;
+            transition: var(--transition);
+        }
+        
+        .search-box:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.2);
+        }
+        
+        .search-btn {
+            position: absolute;
+            right: 5px;
+            top: 5px;
+            background: var(--primary);
+            border: none;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        
+        .search-btn:hover {
+            background: var(--primary-dark);
+        }
+        
+        /* Shops Section */
+        .shops-section {
+            padding: 3rem 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 2.5rem;
+            color: var(--dark);
+            position: relative;
+        }
+        
+        .section-title:after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 4px;
+            background: var(--primary);
+            margin: 10px auto;
+            border-radius: 2px;
+        }
+        
+        .shops-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .shop-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: var(--card-shadow);
+            transition: var(--transition);
+        }
+        
+        .shop-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+        }
+        
+        .shop-card-img {
+            height: 180px;
+            overflow: hidden;
+        }
+        
+        .shop-card-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+        
+        .shop-card:hover .shop-card-img img {
+            transform: scale(1.05);
+        }
+        
+        .shop-card-content {
+            padding: 1.5rem;
+        }
+        
+        .shop-card h3 {
+            font-size: 1.4rem;
+            margin-bottom: 0.5rem;
+            color: var(--dark);
+        }
+        
+        .shop-card p {
+            color: var(--secondary);
+            margin-bottom: 1.2rem;
+        }
+        
+        .shop-card-actions {
+            display: flex;
+            justify-content: space-between;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            background: var(--primary);
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: 500;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+        }
+        
+        .btn:hover {
+            background: var(--primary-dark);
+        }
+        
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+        }
+        
+        .btn-outline:hover {
+            background: var(--primary);
+            color: white;
+        }
+        
+        /* Shop Profile Page */
+        #shop-profile {
+            display: none;
+            padding: 2rem 0;
+        }
+        
+        .profile-header {
+            background: white;
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: var(--card-shadow);
+            margin-bottom: 2rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+        
+        .shop-logo {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid var(--primary);
+            margin-bottom: 1.5rem;
+        }
+        
+        .profile-header h1 {
+            font-size: 2.2rem;
+            margin-bottom: 0.5rem;
+            color: var(--dark);
+        }
+        
+        .profile-header p {
+            color: var(--secondary);
+            margin-bottom: 1rem;
+        }
+        
+        .contact-buttons {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        
+        .contact-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 10px 20px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: var(--transition);
+        }
+        
+        .phone-btn {
+            background: var(--primary);
+            color: white;
+        }
+        
+        .whatsapp-btn {
+            background: #25D366;
+            color: white;
+        }
+        
+        .contact-btn i {
+            margin-right: 8px;
+        }
+        
+        .profile-details {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .detail-card {
+            background: white;
+            border-radius: 12px;
+            padding: 1.5rem;
+            box-shadow: var(--card-shadow);
+        }
+        
+        .detail-card h3 {
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid #e2e8f0;
+            color: var(--dark);
+        }
+        
+        .detail-item {
+            display: flex;
+            margin-bottom: 1rem;
+        }
+        
+        .detail-item i {
+            color: var(--primary);
+            margin-right: 10px;
+            margin-top: 4px;
+            font-size: 1.2rem;
+        }
+        
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        
+        .gallery img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            border-radius: 8px;
+            transition: var(--transition);
+        }
+        
+        .gallery img:hover {
+            transform: scale(1.03);
+        }
+        
+        .map-container {
+            height: 300px;
+            border-radius: 12px;
+            overflow: hidden;
+            margin-top: 1rem;
+            background: #e2e8f0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--secondary);
+        }
+        
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 500;
+            transition: var(--transition);
+        }
+        
+        .back-btn i {
+            margin-right: 8px;
+        }
+        
+        .back-btn:hover {
+            color: var(--primary-dark);
+        }
+        
+        /* Footer */
+        footer {
+            background: var(--dark);
+            color: white;
+            padding: 3rem 0 2rem;
+            margin-top: 3rem;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+        
+        .footer-section h3 {
+            font-size: 1.4rem;
+            margin-bottom: 1.2rem;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .footer-section h3:after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 40px;
+            height: 3px;
+            background: var(--primary);
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 0.8rem;
+        }
+        
+        .footer-links a {
+            color: #cbd5e1;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+        
+        .footer-links a:hover {
+            color: white;
+            padding-left: 5px;
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            margin-top: 2rem;
+            border-top: 1px solid #334155;
+            color: #94a3b8;
+            font-size: 0.9rem;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            nav ul {
+                margin-top: 1rem;
+            }
+            
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            .hero p {
+                font-size: 1rem;
+            }
+            
+            .contact-buttons {
+                flex-direction: column;
+                width: 100%;
+            }
+            
+            .shop-card-actions {
+                flex-direction: column;
+                gap: 10px;
+            }
+            
+            .btn {
+                width: 100%;
+                text-align: center;
+            }
+        }
+        
+        /* Animation */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .fade-in {
+            animation: fadeIn 0.6s ease forwards;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-content">
+            <div class="logo">
+                <i class="fas fa-id-card"></i>
+                <span>ITGlow</span>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#businesses">Businesses</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Homepage -->
+    <div id="homepage">
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="container">
+                <h1>Digital Visiting Cards for Modern Businesses</h1>
+                <p>Connect with your customers through smart digital visiting cards with QR code technology</p>
+                <a href="#businesses" class="btn">Explore Businesses</a>
+            </div>
+        </section>
+
+        <!-- Search Section -->
+        <section class="search-section">
+            <div class="container">
+                <div class="search-container">
+                    <input type="text" class="search-box" placeholder="Search for businesses by name or category...">
+                    <button class="search-btn">Search</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Shops Section -->
+        <section class="shops-section" id="businesses">
+            <div class="container">
+                <h2 class="section-title">Featured Businesses</h2>
+                <div class="shops-grid">
+                    <!-- Shop Cards will be generated here -->
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Shop Profile Page -->
+    <div id="shop-profile">
+        <div class="container">
+            <a href="#" class="back-btn" id="back-to-home">
+                <i class="fas fa-arrow-left"></i> Back to Businesses
+            </a>
+            
+            <div class="profile-header">
+                <img src="" alt="Shop Logo" class="shop-logo" id="shop-logo">
+                <h1 id="shop-name">Business Name</h1>
+                <p id="shop-category">Business Category</p>
+                <p id="shop-tagline">Tagline or description goes here</p>
+                
+                <div class="contact-buttons">
+                    <a href="#" class="contact-btn phone-btn" id="phone-btn">
+                        <i class="fas fa-phone"></i> Call Now
+                    </a>
+                    <a href="#" class="contact-btn whatsapp-btn" id="whatsapp-btn">
+                        <i class="fab fa-whatsapp"></i> WhatsApp
+                    </a>
+                </div>
+            </div>
+            
+            <div class="profile-details">
+                <div class="detail-card">
+                    <h3>Contact Information</h3>
+                    <div class="detail-item">
+                        <i class="fas fa-user"></i>
+                        <div>
+                            <strong>Owner</strong>
+                            <p id="shop-owner">Owner Name</p>
+                        </div>
+                    </div>
+                    <div class="detail-item">
+                        <i class="fas fa-phone"></i>
+                        <div>
+                            <strong>Phone</strong>
+                            <p id="shop-phone">+94 XX XXX XXXX</p>
+                        </div>
+                    </div>
+                    <div class="detail-item">
+                        <i class="fas fa-envelope"></i>
+                        <div>
+                            <strong>Email</strong>
+                            <p id="shop-email">business@example.com</p>
+                        </div>
+                    </div>
+                    <div class="detail-item">
+                        <i class="fas fa-clock"></i>
+                        <div>
+                            <strong>Business Hours</strong>
+                            <p id="shop-hours">8:00 AM - 6:00 PM (Mon-Sat)</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="detail-card">
+                    <h3>Location</h3>
+                    <div class="detail-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <div>
+                            <strong>Address</strong>
+                            <p id="shop-address">Business Address Here</p>
+                        </div>
+                    </div>
+                    <div class="map-container">
+                        <i class="fas fa-map-marked-alt"></i>
+                        <span>Interactive Map</span>
+                    </div>
+                </div>
+                
+                <div class="detail-card">
+                    <h3>Business Gallery</h3>
+                    <div class="gallery" id="shop-gallery">
+                        <!-- Gallery images will be added here -->
+                    </div>
+                </div>
+                
+                <div class="detail-card">
+                    <h3>About Us</h3>
+                    <p id="shop-description">Detailed business description goes here. This section provides information about the business history, services, and unique selling points.</p>
+                    
+                    <h3 style="margin-top: 20px;">Services</h3>
+                    <ul id="shop-services" style="list-style-type: none;">
+                        <!-- Services will be added here -->
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>BusinessConnect</h3>
+                    <p>Transforming traditional business cards into powerful digital experiences.</p>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#businesses">Businesses</a></li>
+                        <li><a href="#about">About Us</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Contact Us</h3>
+                    <ul class="footer-links">
+                        <li><i class="fas fa-envelope"></i> info@it-glow.online</li>
+                        <li><i class="fas fa-phone"></i> +94 76 018 0114</li>
+                        <li><i class="fas fa-map-marker-alt"></i> 391 Dehiwala Rd, Boralesgamuwa</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2023 BusinessConnect. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Sample data for businesses
+        const shops = [
+            {
+                id: 1,
+                name: "Jayasuriya Motors",
+                category: "Automotive Services",
+                tagline: "Your trusted auto care partner",
+                owner: "Mr. Sanath Jayasuriya",
+                phone: "+94 77 123 4567",
+                email: "contact@jayasuriyamotors.lk",
+                address: "123 Galle Road, Colombo 06, Sri Lanka",
+                hours: "8:00 AM - 6:00 PM (Mon-Sat)",
+                description: "Jayasuriya Motors has been providing top-quality automotive services since 2005. We specialize in engine repairs, routine maintenance, and quality spare parts. Our team of certified mechanics ensures your vehicle receives the best care possible.",
+                services: ["Engine Repair & Maintenance", "Oil Changes", "Brake Services", "Tire Sales & Service", "Electrical System Repair"],
+                logo: "https://images.unsplash.com/photo-1630510041351-2c60e0a2d31d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTB8fGNhciUyMGxvZ298ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=500&q=60",
+                photos: [
+                    "https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8Y2FyJTIwcmVwYWlyfGVufDB8fDB8fHww&auto=format&fit=crop&w=500&q=60",
+                    "https://images.unsplash.com/photo-1502877338535-766e1452684a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8Y2FyJTIwcmVwYWlyfGVufDB8fDB8fHww&auto=format&fit=crop&w=500&q=60",
+                    "https://images.unsplash.com/photo-1549399542-7e82138d43aa?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTJ8fGNhciUyMHJlcGFpcnxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=500&q=60"
+                ]
+            },
+            {
+                id: 2,
+                name: "Golden Salon & Spa",
+                category: "Beauty & Wellness",
+                tagline: "Where beauty meets relaxation",
+                owner: "Ms. Nadeesha Perera",
+                phone: "+94 71 987 6543",
+                email: "info@goldensalon.lk",
+                address: "456 Union Place, Kandy, Sri Lanka",
+                hours: "9:00 AM - 7:00 PM (Tue-Sun)",
+                description: "Golden Salon & Spa offers a complete range of beauty and wellness services in a relaxing environment. Our skilled professionals use premium products to ensure you look and feel your best.",
+                services: ["Hair Cutting & Styling", "Facials & Skin Care", "Manicure & Pedicure", "Massage Therapy", "Bridal Packages"],
+                logo: "https://images.unsplash.com/photo-1560066984-138dadb4c035?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8c2Fsb24lMjBsb2dvfGVufDB8fDB8fHww&auto=format&fit=crop&w=500&q=60",
+                photos: [
+                    "https://images.unsplash.com/photo-1595476108010-b4d1f102b1b1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTB8fHNhbG9ufGVufDB8fDB8fHww&auto=format&fit=crop&w=500&q=60",
+                    "https://images.unsplash.com/photo-1519014816548-bf5fe059798b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fHNhbG9ufGVufDB8fDB8fHww&auto=format&fit=crop&w=500&q=60",
+                    "https://images.unsplash.com/photo-1570172619644-dfd03ed5d7de?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MjB8fHNhbG9ufGVufDB8fDB8fHww&auto=format&fit=crop&w=500&q=60"
+                ]
+            },
+            {
+                id: 3,
+                name: "Colombo Tech Solutions",
+                category: "IT Services",
+                tagline: "Your technology partner for growth",
+                owner: "Mr. Asitha Fernando",
+                phone: "+94 76 555 1234",
+                email: "solutions@colombotech.lk",
+                address: "789 Tech Street, Colombo 03, Sri Lanka",
+                hours: "8:30 AM - 5:30 PM (Mon-Fri)",
+                description: "Colombo Tech Solutions provides comprehensive IT services for businesses of all sizes. From network setup to software development, we help you leverage technology for business success.",
+                services: ["Network Setup & Security", "Software Development", "Website Design & Development", "IT Consulting", "Data Recovery"],
+                logo: "https://images.unsplash.com/photo-1567446537736-4277b6b0d9e3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTB8fGl0JTIwbG9nb3xlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=500&q=60",
+                photos: [
+                    "https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTh8fGl0JTIwc2VydmljZXN8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=500&q=60",
+                    "https://images.unsplash.com/photo-1542744173-8e7e53415bb0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8aXQlMjBzZXJ2aWNlc3xlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=500&q=60",
+                    "https://images.unsplash.com/photo-1573164713714-d95e436ab8d6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MjB8fGl0JTIwc2VydmljZXN8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=500&q=60"
+                ]
+            },
+            {
+                id: 4,
+                name: "gg",
+                category: "IT Services",
+                tagline: "Your technology partner for growth",
+                owner: "Mr. Asitha Fernando",
+                phone: "+94 76 555 1234",
+                email: "solutions@colombotech.lk",
+                address: "789 Tech Street, Colombo 03, Sri Lanka",
+                hours: "8:30 AM - 5:30 PM (Mon-Fri)",
+                description: "Colombo Tech Solutions provides comprehensive IT services for businesses of all sizes. From network setup to software development, we help you leverage technology for business success.",
+                services: ["Network Setup & Security", "Software Development", "Website Design & Development", "IT Consulting", "Data Recovery"],
+                logo: "https://images.unsplash.com/photo-1567446537736-4277b6b0d9e3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTB8fGl0JTIwbG9nb3xlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=500&q=60",
+                photos: [
+                    "https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTh8fGl0JTIwc2VydmljZXN8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=500&q=60",
+                    "https://images.unsplash.com/photo-1542744173-8e7e53415bb0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8aXQlMjBzZXJ2aWNlc3xlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=500&q=60",
+                    "https://images.unsplash.com/photo-1573164713714-d95e436ab8d6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MjB8fGl0JTIwc2VydmljZXN8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=500&q=60"
+                ]
+            }
+        ];
+
+        // DOM elements
+        const shopsGrid = document.querySelector('.shops-grid');
+        const homepage = document.getElementById('homepage');
+        const shopProfile = document.getElementById('shop-profile');
+        const backToHomeBtn = document.getElementById('back-to-home');
+        const searchBox = document.querySelector('.search-box');
+        const searchBtn = document.querySelector('.search-btn');
+
+        // Generate shop cards
+        function generateShopCards() {
+            shopsGrid.innerHTML = '';
+            
+            shops.forEach(shop => {
+                const shopCard = document.createElement('div');
+                shopCard.className = 'shop-card fade-in';
+                shopCard.innerHTML = `
+                    <div class="shop-card-img">
+                        <img src="${shop.logo}" alt="${shop.name}">
+                    </div>
+                    <div class="shop-card-content">
+                        <h3>${shop.name}</h3>
+                        <p>${shop.category}</p>
+                        <p>${shop.tagline}</p>
+                        <div class="shop-card-actions">
+                            <button class="btn" onclick="viewShop(${shop.id})">View Details</button>
+                            <button class="btn btn-outline" onclick="shareShop(${shop.id})">Share</button>
+                        </div>
+                    </div>
+                `;
+                shopsGrid.appendChild(shopCard);
+            });
+        }
+
+        // View shop details
+        function viewShop(shopId) {
+            const shop = shops.find(s => s.id === shopId);
+            if (!shop) return;
+            
+            // Update shop profile page
+            document.getElementById('shop-logo').src = shop.logo;
+            document.getElementById('shop-name').textContent = shop.name;
+            document.getElementById('shop-category').textContent = shop.category;
+            document.getElementById('shop-tagline').textContent = shop.tagline;
+            document.getElementById('shop-owner').textContent = shop.owner;
+            document.getElementById('shop-phone').textContent = shop.phone;
+            document.getElementById('shop-email').textContent = shop.email;
+            document.getElementById('shop-address').textContent = shop.address;
+            document.getElementById('shop-hours').textContent = shop.hours;
+            document.getElementById('shop-description').textContent = shop.description;
+            
+            // Update contact buttons
+            document.getElementById('phone-btn').href = `tel:${shop.phone}`;
+            document.getElementById('whatsapp-btn').href = `https://wa.me/${shop.phone.replace(/\D/g, '')}?text=Hi, I'm interested in your services`;
+            
+            // Generate services list
+            const servicesList = document.getElementById('shop-services');
+            servicesList.innerHTML = '';
+            shop.services.forEach(service => {
+                const li = document.createElement('li');
+                li.innerHTML = `<i class="fas fa-check" style="color: var(--success); margin-right: 8px;"></i> ${service}`;
+                servicesList.appendChild(li);
+            });
+            
+            // Generate gallery
+            const gallery = document.getElementById('shop-gallery');
+            gallery.innerHTML = '';
+            shop.photos.forEach(photo => {
+                const img = document.createElement('img');
+                img.src = photo;
+                img.alt = `${shop.name} photo`;
+                gallery.appendChild(img);
+            });
+            
+            // Show shop profile, hide homepage
+            homepage.style.display = 'none';
+            shopProfile.style.display = 'block';
+            
+            // Scroll to top
+            window.scrollTo(0, 0);
+        }
+
+        // Share shop function
+        function shareShop(shopId) {
+            const shop = shops.find(s => s.id === shopId);
+            if (!shop) return;
+            
+            if (navigator.share) {
+                navigator.share({
+                    title: shop.name,
+                    text: `Check out ${shop.name} - ${shop.tagline}`,
+                    url: window.location.href + `?shop=${shop.id}`
+                })
+                .then(() => console.log('Shared successfully'))
+                .catch(error => console.log('Error sharing:', error));
+            } else {
+                alert(`Share this business: ${shop.name}\nPhone: ${shop.phone}\nWebsite: ${window.location.href}?shop=${shop.id}`);
+            }
+        }
+
+        // Search functionality
+        function searchShops() {
+            const searchTerm = searchBox.value.toLowerCase();
+            
+            if (!searchTerm) {
+                generateShopCards();
+                return;
+            }
+            
+            const filteredShops = shops.filter(shop => 
+                shop.name.toLowerCase().includes(searchTerm) || 
+                shop.category.toLowerCase().includes(searchTerm) ||
+                shop.tagline.toLowerCase().includes(searchTerm) ||
+                shop.services.some(service => service.toLowerCase().includes(searchTerm))
+            );
+            
+            shopsGrid.innerHTML = '';
+            
+            if (filteredShops.length === 0) {
+                shopsGrid.innerHTML = `
+                    <div class="no-results" style="grid-column: 1 / -1; text-align: center; padding: 2rem;">
+                        <i class="fas fa-search" style="font-size: 3rem; color: var(--secondary); margin-bottom: 1rem;"></i>
+                        <h3>No businesses found</h3>
+                        <p>Try different search terms or browse all businesses</p>
+                    </div>
+                `;
+                return;
+            }
+            
+            filteredShops.forEach(shop => {
+                const shopCard = document.createElement('div');
+                shopCard.className = 'shop-card fade-in';
+                shopCard.innerHTML = `
+                    <div class="shop-card-img">
+                        <img src="${shop.logo}" alt="${shop.name}">
+                    </div>
+                    <div class="shop-card-content">
+                        <h3>${shop.name}</h3>
+                        <p>${shop.category}</p>
+                        <p>${shop.tagline}</p>
+                        <div class="shop-card-actions">
+                            <button class="btn" onclick="viewShop(${shop.id})">View Details</button>
+                            <button class="btn btn-outline" onclick="shareShop(${shop.id})">Share</button>
+                        </div>
+                    </div>
+                `;
+                shopsGrid.appendChild(shopCard);
+            });
+        }
+
+        // Back to homepage
+        backToHomeBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            shopProfile.style.display = 'none';
+            homepage.style.display = 'block';
+        });
+
+        // Event listeners
+        searchBtn.addEventListener('click', searchShops);
+        searchBox.addEventListener('keyup', function(e) {
+            if (e.key === 'Enter') searchShops();
+        });
+
+        // Check URL for shop parameter
+        window.addEventListener('DOMContentLoaded', function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const shopId = urlParams.get('shop');
+            
+            generateShopCards();
+            
+            if (shopId) {
+                viewShop(parseInt(shopId));
+            }
+        });
+    </script>
+</body>
+</html>
